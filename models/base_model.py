@@ -8,9 +8,26 @@ class BaseModel:
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-        if len(kwargs) != 0:
-            for k, v in kwargs.items():
-                if k == "created_at" or k == "updated_at":
+        
+        """ This code is a part of a method that is used to update the attributes of an object in a database. 
+
+The code checks if there are any keyword arguments (kwargs) passed to the method. 
+If there are, it loops through each key-value pair in the kwargs using the items() method. 
+
+For each key-value pair, it checks if the key is either "created_at" or "updated_at".
+If it is, it converts the corresponding value to a datetime object using the strptime() method and sets 
+the attribute in the object's dictionary (__dict__) to this new datetime object. 
+
+If the key is not "created_at" or "updated_at", 
+it simply sets the attribute in the object's dictionary to the corresponding value in the kwargs. 
+
+If there are no keyword arguments passed to the method, 
+it adds the object to the database using the new() method from the storage module. """
+        
+        if len(kwargs) != 0: # checks if there are any keyword arguments (kwargs) passed to the method. 
+            for k, v in kwargs.items(): # If there are, it loops through each key-value pair in the kwargs using the items() method. 
+
+                if k == "created_at" or k == "updated_at": # For each key-value pair, it checks if the key is either "created_at" or "updated_at".
                     self.__dict__[k] = datetime.strptime(v, time_format)
                 else:
                     self.__dict__[k] = v
