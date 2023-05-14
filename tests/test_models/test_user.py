@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Defines unittests for models/user.py.
+
 Unittest classes:
     TestUser_instantiation
     TestUser_save
@@ -192,4 +193,3 @@ class TestUser_to_dict(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
