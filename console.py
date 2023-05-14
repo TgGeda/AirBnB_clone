@@ -4,8 +4,16 @@ This module contains the entry point of the command interpreter
 """
 
 import cmd
-from models.base_model import BaseModel
+import re
+from shlex import split
 from models import storage
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -13,6 +21,15 @@ class HBNBCommand(cmd.Cmd):
     Class for the command interpreter
     """
     prompt = "(hbnb) "
+    __classes = {
+        "BaseModel",
+        "User",
+        "State",
+        "City",
+        "Place",
+        "Amenity",
+        "Review"
+    }
 
     def do_quit(self, arg):
         """
