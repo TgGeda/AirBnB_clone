@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Defines unittests for models/state.py.
+
 Unittest classes:
     TestState_instantiation
     TestState_save
@@ -186,4 +187,3 @@ class TestState_to_dict(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
