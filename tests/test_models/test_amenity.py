@@ -1,22 +1,20 @@
 #!/usr/bin/python3
-"""
-This script defines unittests for models/amenity.py.
-Unittest classes:
-    TestAmenityInstantiation
-    TestAmenitySave
-    TestAmenityToDict
-"""
+"""Defines unittests for models/amenity.py.
 
+Unittest classes:
+    TestAmenity_instantiation
+    TestAmenity_save
+    TestAmenity_to_dict
+"""
 import os
+import models
 import unittest
 from datetime import datetime
 from time import sleep
-
-import models
 from models.amenity import Amenity
 
 
-class TestAmenityInstantiation(unittest.TestCase):
+class TestAmenity_instantiation(unittest.TestCase):
     """Unittests for testing instantiation of the Amenity class."""
 
     def test_no_args_instantiates(self):
@@ -74,7 +72,7 @@ class TestAmenityInstantiation(unittest.TestCase):
         self.assertNotIn(None, am.__dict__.values())
 
     def test_instantiation_with_kwargs(self):
-        """Test instantiation with kwargs."""
+        """instantiation with kwargs test method"""
         dt = datetime.today()
         dt_iso = dt.isoformat()
         am = Amenity(id="345", created_at=dt_iso, updated_at=dt_iso)
@@ -87,11 +85,11 @@ class TestAmenityInstantiation(unittest.TestCase):
             Amenity(id=None, created_at=None, updated_at=None)
 
 
-class TestAmenitySave(unittest.TestCase):
+class TestAmenity_save(unittest.TestCase):
     """Unittests for testing save method of the Amenity class."""
 
     @classmethod
-    def setUpClass(cls):
+    def setUp(self):
         try:
             os.rename("file.json", "tmp")
         except IOError:
@@ -138,7 +136,7 @@ class TestAmenitySave(unittest.TestCase):
             self.assertIn(amid, f.read())
 
 
-class TestAmenityToDict(unittest.TestCase):
+class TestAmenity_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the Amenity class."""
 
     def test_to_dict_type(self):
@@ -165,7 +163,7 @@ class TestAmenityToDict(unittest.TestCase):
         self.assertEqual(str, type(am_dict["created_at"]))
         self.assertEqual(str, type(am_dict["updated_at"]))
 
-     def test_to_dict_output(self):
+    def test_to_dict_output(self):
         dt = datetime.today()
         am = Amenity()
         am.id = "123456"
